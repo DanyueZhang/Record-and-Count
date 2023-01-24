@@ -4,13 +4,14 @@ An app to record and count.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+1. Download the project from GitHub: From the command line, run the following command:
 
-A few resources to get you started if this is your first Flutter project:
+   `git clone https://github.com/DanyueZhang/Record-and-Count.git`
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+2. Import the project into your preferred IDE.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+3. Install packages: All required packages have already been added to the project `pubspec.yaml` file. If your IDE doesn't automatically install dependencies, open a command line terminal and from the root of the project, run the following command to retrieve the project dependencies:
+
+   `flutter pub get`
+
+4. Run the app.
