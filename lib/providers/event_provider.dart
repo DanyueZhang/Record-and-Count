@@ -31,8 +31,6 @@ class EventProvider extends ChangeNotifier {
   Future<void> deleteEvent(String id) async {
     await DBEvent().deleteEvent(id);
 
-    events.removeWhere((event) => event.id == id);
-
     await getEvents();
   }
 
