@@ -15,3 +15,7 @@ An app to record and count.
    `flutter pub get`
 
 4. Run the app.
+
+## Limitation
+
+This project uses Isar version 2.5.0. If you use the latest version, you may encounter an error that "The integer literal xxxxxxxxxxxxx can't be represented exactly in JavaScript.". Learn more, visit [Issues of isar](https://github.com/isar/isar/issues/686).
