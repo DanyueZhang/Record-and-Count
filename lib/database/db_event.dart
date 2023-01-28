@@ -17,14 +17,24 @@ class DBEvent {
   Future<List<Event>> getEvents() async {
     final isar = await DB().openDB();
 
-    return await isar.events.where().findAll();
+    // "Isar does not store timezone information of your dates.
+    // Instead, it converts DateTimes to UTC before storing them.
+    // Isar returns all dates in local time." -- Isar docs (https://isar.dev/schema.html#nullable-types)
+    // Therefore, we need to convert local time to UTC again.
+    var events = await isar.events.where().findAll();
+
+    for (var event in events) {
+      event.dateTime = event.dateTime.toUtc();
+    }
+
+    return events;
   }
 
   Future<void> deleteEvent(int id) async {
     final isar = await DB().openDB();
 
     await isar.writeTxn((isar) async {
-      final success = await isar.events.delete(id);
+      await isar.events.delete(id);
     });
   }
 

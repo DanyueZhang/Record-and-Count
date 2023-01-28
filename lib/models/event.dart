@@ -8,7 +8,7 @@ class Event{
   int id = Isar.autoIncrement;
   String emoji;
   String content;
-  final DateTime dateTime;
+  DateTime dateTime;
 
   Event({required this.emoji, required this.content, required this.dateTime});
 
