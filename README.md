@@ -15,3 +15,7 @@ An app to record and count.
    `flutter pub get`
 
 4. Run the app.
+
+## Limitation
+
+Since sqflite only supports iOS, Android and MacOS, this project also supports these platforms. If you want to support other platforms, visit [sqflite pub.dev page](https://pub.dev/packages/sqflite), or you can see the Isar branch of this project, which uses Isar as database.

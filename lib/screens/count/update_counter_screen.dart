@@ -132,7 +132,7 @@ class _UpdateCounterScreenState extends State<UpdateCounterScreen> {
                     }
                   },
                   child: const Text(
-                    'Add Counter',
+                    'Update Counter',
                     style: TextStyle(fontSize: 16),
                   ),
                 ),
