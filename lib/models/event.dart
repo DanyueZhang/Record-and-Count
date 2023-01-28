@@ -1,13 +1,16 @@
-import 'package:equatable/equatable.dart';
 import 'package:intl/intl.dart';
+import 'package:isar/isar.dart';
 
-class Event extends Equatable {
-  final String id;
-  final String emoji;
-  final String content;
+part 'event.g.dart';
+
+@Collection()
+class Event{
+  int id = Isar.autoIncrement;
+  String emoji;
+  String content;
   final DateTime dateTime;
 
-  const Event({required this.id, required this.emoji, required this.content, required this.dateTime});
+  Event({required this.emoji, required this.content, required this.dateTime});
 
   Map<String, dynamic> toMap() {
     return {
@@ -19,5 +22,11 @@ class Event extends Equatable {
   }
 
   @override
-  List<Object?> get props => [id];
+  bool operator ==(Object other) =>
+      other is Event &&
+          other.runtimeType == runtimeType &&
+          other.id == id;
+
+  @override
+  int get hashCode => id.hashCode;
 }

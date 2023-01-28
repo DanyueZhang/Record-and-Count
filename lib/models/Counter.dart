@@ -1,12 +1,15 @@
-import 'package:equatable/equatable.dart';
+import 'package:isar/isar.dart';
 
-class Counter extends Equatable {
-  final String id;
-  final String emoji;
-  final String name;
-  final int count;
+part 'Counter.g.dart';
 
-  const Counter({required this.id, required this.emoji, required this.name, this.count = 0});
+@Collection()
+class Counter {
+  int id = Isar.autoIncrement;
+  String emoji;
+  String name;
+  int count;
+
+  Counter({required this.emoji, required this.name, this.count = 0});
 
   Map<String, dynamic> toMap() {
     return {
@@ -18,5 +21,11 @@ class Counter extends Equatable {
   }
 
   @override
-  List<Object?> get props => [id];
+  bool operator ==(Object other) =>
+      other is Counter &&
+          other.runtimeType == runtimeType &&
+          other.id == id;
+
+  @override
+  int get hashCode => id.hashCode;
 }

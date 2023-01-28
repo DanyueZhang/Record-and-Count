@@ -110,7 +110,7 @@ class _UpdateEventScreenState extends State<UpdateEventScreen> {
                     }
                   },
                   child: const Text(
-                    'Add Event',
+                    'Update Event',
                     style: TextStyle(fontSize: 16),
                   ),
                 ),

@@ -1,52 +1,35 @@
+import 'package:isar/isar.dart';
 import 'package:record_and_count/models/Counter.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:record_and_count/database/db.dart';
+import 'package:record_and_count/database/DB.dart';
 
 class DBCounter {
   Future<void> insertCounter(Counter counter) async {
-    final db = await DB().database();
+    final isar = await DB().openDB();
 
-    await db.insert(
-      'counters',
-      counter.toMap(),
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
+    await isar.writeTxn((isar) async {
+      await isar.counters.put(counter);
+    });
   }
 
   Future<List<Counter>> getCounters() async {
-    final db = await DB().database();
+    final isar = await DB().openDB();
 
-    final List<Map<String, dynamic>> maps = await db.query('counters');
-
-    return List.generate(
-      maps.length,
-      (index) => Counter(
-        id: maps[index]['id'],
-        emoji: maps[index]['emoji'],
-        name: maps[index]['name'],
-        count: maps[index]['count'],
-      ),
-    );
+    return await isar.counters.where().findAll();
   }
 
-  Future<void> deleteCounter(String id) async {
-    final db = await DB().database();
+  Future<void> deleteCounter(int id) async {
+    final isar = await DB().openDB();
 
-    await db.delete(
-      'counters',
-      where: 'id = ?',
-      whereArgs: [id],
-    );
+    await isar.writeTxn((isar) async {
+      await isar.counters.delete(id);
+    });
   }
 
   Future<void> updateCounter(Counter counter) async {
-    final db = await DB().database();
+    final isar = await DB().openDB();
 
-    await db.update(
-      'counters',
-      counter.toMap(),
-      where: 'id = ?',
-      whereArgs: [counter.id],
-    );
+    await isar.writeTxn((isar) async {
+      await isar.counters.put(counter);
+    });
   }
 }
